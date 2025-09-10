@@ -2,7 +2,6 @@
 
 A comprehensive financial management website offering EMI calculations, investment guidance, and financial planning resources, built with a modern, responsive design.
 
-\<br\>
 
 ## 📸 Screenshots
 
@@ -11,11 +10,11 @@ A comprehensive financial management website offering EMI calculations, investme
 
 **Homepage**
 
-![Homepage](https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?q=80&w=1200&auto=format&fit=crop)
+![Homepage](assets/images/homepage.png)
 
 **EMI Calculator**
 
-![EMI Calculator](https://picsum.photos/seed/emicalc/1200/700)
+![EMI Calculator](assets/images/calculator.png)
 
 
 -----

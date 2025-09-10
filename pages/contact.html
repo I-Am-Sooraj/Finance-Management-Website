@@ -5,25 +5,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>SEM 3 MINI PROJECT</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <title>Contact - FinanceAid</title>
 </head>
 <body>
 
   <!--Code For Header-->
 
-  <header class="text-gray-600 body-font">
+  <header class="navbar text-gray-600 body-font">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+      <a href="../index.html" class="logo flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
         </svg>
         <span class="ml-3 text-xl">FinanceAid</span>
       </a>
-      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-        <a href="index.html" class="mr-5 hover:text-gray-900">Home</a>
-        <a href="team.html" class="mr-5 hover:text-gray-900">Our Team</a>
-        <a href="contact us.html" class="mr-5 hover:text-gray-900">Contact Us</a>
-        <a href="loan.html" class="mr-5 hover:text-gray-900">Calculate</a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center" aria-label="Main Navigation">
+        <a href="../index.html" class="mr-5 hover:text-gray-900">Home</a>
+  <a href="../index.html#about" class="mr-5 hover:text-gray-900">Developer</a>
+        <a href="contact.html" class="mr-5 hover:text-gray-900">Contact</a>
+        <a href="calculator.html" class="mr-5 hover:text-gray-900">EMI Calculator</a>
       </nav>
     </div>
   </header>
@@ -57,7 +58,7 @@
             </div>
           </div>
           <div class="p-2 w-full">
-            <a href="index.html" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Submit</a>
+            <button class="flex mx-auto text-white bg-indigo-600 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-700 rounded text-lg" type="button" onclick="alert('Thanks! We\'ll get back to you soon.')">Submit</button>
           </div>
           <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
             <a class="text-indigo-500">example@email.com</a>
@@ -99,19 +100,19 @@
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-wrap md:text-left text-center order-first">
         <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-          <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+      <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
           <nav class="list-none mb-10">
             <li>
-              <a href="index.html" class="text-gray-600 hover:text-gray-800">Home</a>
+        <a href="../index.html" class="text-gray-600 hover:text-gray-800">Home</a>
             </li>
             <li>
-              <a href="team.html" class="text-gray-600 hover:text-gray-800">About Us</a>
+  <a href="../index.html#about" class="text-gray-600 hover:text-gray-800">Developer</a>
             </li>
             <li>
               <a class="text-gray-600 hover:text-gray-800">Terms & Condition</a>
             </li>
             <li>
-              <a href="contact us.html" class="text-gray-600 hover:text-gray-800">Help</a>
+        <a href="contact.html" class="text-gray-600 hover:text-gray-800">Help</a>
             </li>
           </nav>
         </div>

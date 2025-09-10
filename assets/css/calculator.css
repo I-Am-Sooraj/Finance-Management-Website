@@ -1,0 +1,281 @@
+/* EMI Calculator Styles */
+.calculator-body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.calculator-container {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.calculator-heading {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2rem;
+}
+
+/* Input Container Styles */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+.input-container label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.input-container input {
+    font-size: 1.1rem;
+    padding: 12px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background: #f9fafb;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    outline: none;
+}
+
+.input-container input:focus {
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.input-container input:hover {
+    border-color: #d1d5db;
+    background: white;
+}
+
+/* Loan Tenure Special Layout */
+.loan-tenure-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.loan-tenure-container label {
+    margin-bottom: 0;
+    min-width: 120px;
+}
+
+#loanTenure {
+    flex: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+}
+
+/* Radio Button Styles */
+.radio-container {
+    display: flex;
+    border: 2px solid #e5e7eb;
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+    overflow: hidden;
+}
+
+.radio-container input[type="radio"] {
+    display: none;
+}
+
+.radio-container label {
+    background: #f9fafb;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border: none;
+    margin: 0;
+    min-width: auto;
+    flex: 1;
+    text-align: center;
+    user-select: none;
+}
+
+.radio-container label:first-of-type {
+    border-right: 1px solid #e5e7eb;
+}
+
+.radio-container label:hover {
+    background: #667eea;
+    color: white;
+}
+
+.radio-container input[type="radio"]:checked + label {
+    background: #667eea;
+    color: white;
+    font-weight: 600;
+}
+
+/* Submit Button */
+.submit-container {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+#calculate {
+    padding: 14px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    outline: none;
+}
+
+#calculate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+#calculate:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Output Section */
+.output {
+    margin-top: 2rem;
+    display: none;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.output.show {
+    display: block;
+}
+
+.output p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    color: #475569;
+    transition: all 0.3s ease;
+}
+
+.output p:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.output p span {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #667eea;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .calculator-container {
+        padding: 24px;
+        margin: 10px;
+    }
+    
+    .calculator-heading {
+        font-size: 2rem;
+    }
+    
+    .loan-tenure-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .loan-tenure-container label {
+        min-width: auto;
+        margin-bottom: 0.5rem;
+    }
+    
+    #loanTenure {
+        border-radius: 12px 12px 0 0;
+        border-right: 2px solid #e5e7eb;
+    }
+    
+    .radio-container {
+        border-radius: 0 0 12px 12px;
+        border-left: 2px solid #e5e7eb;
+        border-top: none;
+    }
+}
+
+/* Loading State */
+.calculating {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.calculating #calculate::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Error States */
+.input-error {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.error-message {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    font-weight: 500;
+}

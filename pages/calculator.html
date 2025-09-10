@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advanced EMI Calculator - Calculate your loan EMI with detailed breakdown and interactive features">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/calculator.css">
+    
+    <title>EMI Calculator - FinanceAid</title>
+</head>
+
+<body class="calculator-body">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <a href="../index.html" class="flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" 
+                         stroke-linejoin="round" stroke-width="2" class="w-8 h-8 text-white p-1.5 bg-indigo-500 rounded-full" 
+                         viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                    </svg>
+                    <span class="text-lg font-bold text-gray-900">FinanceAid</span>
+                </a>
+                <a href="../index.html" class="text-indigo-600 hover:text-indigo-700 font-medium">
+                    ← Back to Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Calculator Container -->
+    <form class="calculator-container">
+        <h1 class="calculator-heading">EMI Calculator</h1>
+        <p class="text-center text-gray-600 mb-8">Calculate your Equated Monthly Installments with precision</p>
+        
+        <div class="input-container">
+            <label for="amount">Loan Amount (₹)</label>
+            <input type="text" id="amount" placeholder="e.g., 500000" required>
+            <input type="range" id="amountRange" min="1000" max="10000000" step="1000" value="500000" style="margin-top:10px">
+        </div>
+        
+        <div class="input-container">
+            <label for="interest">Interest Rate (% per annum)</label>
+            <input type="number" id="interest" step="0.01" placeholder="e.g., 8.5" required>
+            <input type="range" id="interestRange" min="0" max="50" step="0.05" value="8.5" style="margin-top:10px">
+        </div>
+        
+        <div class="input-container loan-tenure-container">
+            <label for="loanTenure">Loan Tenure</label>
+            <input type="number" id="loanTenure" placeholder="e.g., 20" required>
+            <div class="radio-container">
+                <input type="radio" name="btn" id="year" checked><label for="year">Years</label>
+                <input type="radio" name="btn" id="month"><label for="month">Months</label>
+            </div>
+        </div>
+        <div class="input-container" style="margin-top:-8px">
+            <input type="range" id="tenureRange" min="1" max="600" step="1" value="240">
+        </div>
+        
+        <div class="submit-container">
+            <button type="button" id="calculate">Calculate EMI</button>            
+        </div>
+
+        <div class="output">
+            <p>Monthly EMI <span id="emi">₹0</span></p>
+            <p>Total Interest Payable <span id="totalInterest">₹0</span></p>
+            <p>Total Payment (Principal + Interest) <span id="totalPayment">₹0</span></p>
+            <!-- Donut breakdown -->
+            <div class="mt-6 flex flex-col sm:flex-row items-center gap-6">
+                <svg id="emiDonut" width="180" height="180" viewBox="0 0 42 42" class="block">
+                    <!-- background circle -->
+                    <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#e5e7eb" stroke-width="6"></circle>
+                    <!-- interest arc -->
+                    <circle id="arcInterest" cx="21" cy="21" r="15.915" fill="transparent"
+                            stroke="#ef4444" stroke-width="6" stroke-dasharray="0 100" stroke-dashoffset="25"></circle>
+                    <!-- principal arc -->
+                    <circle id="arcPrincipal" cx="21" cy="21" r="15.915" fill="transparent"
+                            stroke="#10b981" stroke-width="6" stroke-dasharray="0 100" stroke-dashoffset="25"></circle>
+                    <text x="21" y="22" text-anchor="middle" font-size="4" fill="#374151">Breakdown</text>
+                </svg>
+                <div class="text-sm">
+                    <div class="flex items-center gap-2 mb-1"><span class="inline-block w-3 h-3 rounded-sm" style="background:#10b981"></span> Principal: <span id="lblPrincipal" class="font-medium ml-1">₹0</span></div>
+                    <div class="flex items-center gap-2 mb-1"><span class="inline-block w-3 h-3 rounded-sm" style="background:#ef4444"></span> Interest: <span id="lblInterest" class="font-medium ml-1">₹0</span></div>
+                    <div class="flex items-center gap-2"><span class="inline-block w-3 h-3 rounded-sm" style="background:#6366f1"></span> Total: <span id="lblTotal" class="font-medium ml-1">₹0</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="mt-8 p-6 bg-blue-50 rounded-xl border border-blue-200">
+            <h3 class="font-semibold text-blue-900 mb-3">How EMI is Calculated?</h3>
+            <p class="text-blue-800 text-sm leading-relaxed mb-3">
+                EMI is calculated using the formula: <strong>EMI = P × r × (1 + r)^n / ((1 + r)^n - 1)</strong>
+            </p>
+            <ul class="text-blue-800 text-sm space-y-1">
+                <li><strong>P</strong> = Principal loan amount</li>
+                <li><strong>r</strong> = Monthly interest rate</li>
+                <li><strong>n</strong> = Number of monthly instalments</li>
+            </ul>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="mt-6 p-6 bg-green-50 rounded-xl border border-green-200">
+            <h3 class="font-semibold text-green-900 mb-3">💡 EMI Tips</h3>
+            <ul class="text-green-800 text-sm space-y-2">
+                <li>• Choose a tenure that balances monthly outflow and total interest</li>
+                <li>• Consider making prepayments to reduce overall interest</li>
+                <li>• Keep your EMI-to-income ratio below 40%</li>
+                <li>• Compare interest rates from multiple lenders</li>
+            </ul>
+        </div>
+    </form>
+
+    <!-- Footer -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg border-t border-gray-200 py-2">
+        <div class="text-center">
+            <p class="text-sm text-gray-600">
+                © 2024 FinanceAid - 
+                <a href="../pages/contact.html" class="text-indigo-600 hover:text-indigo-700">Contact Us</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+        <script src="../assets/js/main.js"></script>
+        <script>
+            // Groww-like slider sync and live calculation (safe init to avoid premature submit)
+            (function(){
+                const amt = document.getElementById('amount');
+                const amtR = document.getElementById('amountRange');
+                const rate = document.getElementById('interest');
+                const rateR = document.getElementById('interestRange');
+                const ten = document.getElementById('loanTenure');
+                const tenR = document.getElementById('tenureRange');
+                const year = document.getElementById('year');
+                const month = document.getElementById('month');
+
+                let ready = false; // becomes true after DOMContentLoaded (EMICalculator bound)
+
+                function parseNum(v){ return parseFloat((v||'').toString().replace(/[^0-9.]/g,'')); }
+
+                function triggerCalc(){
+                    if (!ready) return;
+                    const btn = document.getElementById('calculate');
+                    if(btn){ btn.click(); }
+                }
+
+                function syncAmountFromRange(){ amt.value = parseInt(amtR.value,10).toLocaleString('en-IN'); triggerCalc(); }
+                function syncAmountFromInput(){ const v = parseNum(amt.value); if(!isNaN(v)){ amtR.value = Math.min(Math.max(v, +amtR.min), +amtR.max); } }
+                function syncRateFromRange(){ rate.value = parseFloat(rateR.value).toFixed(2); triggerCalc(); }
+                function syncRateFromInput(){ const v = parseNum(rate.value); if(!isNaN(v)){ rateR.value = Math.min(Math.max(v, +rateR.min), +rateR.max); } }
+                function syncTenureFromRange(){ const v = +tenR.value; if(year.checked){ ten.value = (v/12).toFixed(0); } else { ten.value = v; } triggerCalc(); }
+                function syncTenureFromInput(){ const v = parseNum(ten.value); if(!isNaN(v)){ const months = year.checked ? v*12 : v; tenR.value = Math.min(Math.max(months, +tenR.min), +tenR.max); } }
+
+                // event listeners for live updates
+                amtR.addEventListener('input', syncAmountFromRange);
+                rateR.addEventListener('input', syncRateFromRange);
+                tenR.addEventListener('input', syncTenureFromRange);
+                amt.addEventListener('input', syncAmountFromInput);
+                rate.addEventListener('input', syncRateFromInput);
+                ten.addEventListener('input', syncTenureFromInput);
+                year.addEventListener('change', syncTenureFromInput);
+                month.addEventListener('change', syncTenureFromInput);
+
+                // initialize default values without triggering calculation yet
+                amt.value = parseInt(amtR.value,10).toLocaleString('en-IN');
+                rate.value = parseFloat(rateR.value).toFixed(2);
+                tenR.value = 240; // 20 years default
+                syncTenureFromRange(); // will not calculate until 'ready' is true
+
+                // mark ready after DOM is fully parsed so EMICalculator listeners are attached
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', function(){ ready = true; triggerCalc(); });
+                } else {
+                    ready = true; triggerCalc();
+                }
+            })();
+            // breakdown donut wiring
+            (function(){
+                const arcP = document.getElementById('arcPrincipal');
+                const arcI = document.getElementById('arcInterest');
+                const lblP = document.getElementById('lblPrincipal');
+                const lblI = document.getElementById('lblInterest');
+                const lblT = document.getElementById('lblTotal');
+                function setDonut(principal, interest){
+                    const total = Math.max(principal + interest, 1);
+                    const pPct = Math.max(0, Math.min(100, (principal/total)*100));
+                    const iPct = Math.max(0, Math.min(100, (interest/total)*100));
+                    // SVG circle starts at top; use dashoffset=25 to start at 12 o'clock
+                    arcP.setAttribute('stroke-dasharray', `${pPct} ${100-pPct}`);
+                    arcI.setAttribute('stroke-dasharray', `${iPct} ${100-iPct}`);
+                    // stack arcs: principal on top, interest below with offset by principal
+                    arcI.style.transformOrigin = '50% 50%';
+                    arcP.style.transformOrigin = '50% 50%';
+                    arcI.style.transform = `rotate(${(pPct/100)*360}deg)`;
+                }
+                document.addEventListener('emi:updated', (e)=>{
+                    const d = e.detail || {};
+                    lblP.textContent = '₹' + Math.round(d.principal||0).toLocaleString('en-IN');
+                    lblI.textContent = '₹' + Math.round(d.totalInterest||0).toLocaleString('en-IN');
+                    lblT.textContent = '₹' + Math.round(d.totalPayment||0).toLocaleString('en-IN');
+                    setDonut(d.principal||0, d.totalInterest||0);
+                });
+            })();
+        </script>
+</body>
+</html>

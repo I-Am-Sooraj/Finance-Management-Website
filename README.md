@@ -4,8 +4,19 @@ A comprehensive financial management website offering EMI calculations, investme
 
 \<br\>
 
-> **Note:** Add a screenshot of your project here to give visitors a quick look at your work\!
->
+## 📸 Screenshots
+
+<!-- Tip: Replace these external images with real captures from your app when ready:
+  assets/readme/homepage.png and assets/readme/calculator.png -->
+
+**Homepage**
+
+![Homepage](https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?q=80&w=1200&auto=format&fit=crop)
+
+**EMI Calculator**
+
+![EMI Calculator](https://picsum.photos/seed/emicalc/1200/700)
+
 
 -----
 
@@ -40,6 +51,9 @@ The project follows a clean and organized file structure.
 │   ├── css/
 │   │   ├── main.css
 │   │   └── calculator.css
+│   ├── images/
+│   │   ├── calculator.png
+        └──homepage.png
 │   └── js/
 │       └── main.js
 ├── pages/
